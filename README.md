@@ -29,5 +29,30 @@ Un control automatizado de permisos y vacaciones permitirá:
  - Intangible (no se traducen en dinero)
    - Los empleados estaran mas felices al tener un control de sus permisos y vacaciones.
 
+## Ejemplo de funcionamiento del BOT
 
+### Menu de Empleado
+
+```
+Emp: Hola
+Bot: Hola selecciona una opción:
+1. Ver permisos solicitados
+2. Ver vacaciones solicitadas este año
+3. Solicitar permiso
+4. Solicitar vacación
+5. Cancelar permiso.
+6. Cancelar vacación.
+```
+
+Si selecciona la opción 1:
+
+```
+Bot: Usted pidio los siguientes permisos este año
+1. 01/Ene/2022  8:30 a 14:00  Visita al medico
+2. 10/Ene/2022  9:00 a 15:00  Emergencia Familiar
+
+Desea:
+1. Ver otro año
+2. Volver
+```
 
