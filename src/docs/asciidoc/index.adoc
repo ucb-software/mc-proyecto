@@ -21,6 +21,12 @@ Para el personal de RRHH:
 
 ### 100 - Solicitud de días de vacación.
 
+*Autor*: Ernesto Campohermoso
+
+*Fecha*: 24/02/2022
+
+*Prioridad*: ALTA
+
 #### Descripción
 Un `Empleado` debe solicitar vacaciones por medio de la aplicación, para esto debe enviar la fecha inicio y fecha fin de la solicitud. Una vez enviada su solicitud una `Encargado de RRHH` procederá a autorizar o rechazar la solicitud del empleado, en caso de que la `Solicitud` sea rechazada se debe agregar una observación para que si es que procede el empleado realice las modificaciones correspondientes. Además el `BOT` debe llevar un control de:
  * Los días hábiles del año
