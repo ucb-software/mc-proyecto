@@ -1,0 +1,55 @@
+= {product} - Histórias de Usuario
+Universidad Católica Boliviana. <ecampohermoso@ucb.edu.bo>
+1.0.0
+:product: BOT RRHH
+
+## Introducción
+El presento documente tendrá el detalle de todas las historías de usuario para la construcción deun BOT de RRHH.
+
+Se ha establecido que la funcionalidad mínima para la implementación será:
+
+Para los empleados:
+
+ 1. Los empleados pueden solicitar vacaciones mediante el BOT.
+ 2. El empleado debe poder ver el historial de días soliciatados y cuantos días le queda.
+
+Para el personal de RRHH:
+
+ 1. El personal de RRHH debe poder autorizar o rechazar las vacaciones solicitadas.
+
+## Histórias de Usuario.
+
+### 100 - Solicitud de días de vacación.
+
+#### Descripción
+Un `Empleado` debe solicitar vacaciones por medio de la aplicación, para esto debe enviar la fecha inicio y fecha fin de la solicitud. Una vez enviada su solicitud una `Encargado de RRHH` procederá a autorizar o rechazar la solicitud del empleado, en caso de que la `Solicitud` sea rechazada se debe agregar una observación para que si es que procede el empleado realice las modificaciones correspondientes. Además el `BOT` debe llevar un control de:
+ * Los días hábiles del año
+ * La cantidad de días que el empleado ya tomo vacaciones
+ * La cantidad de días que le corresponde al empleado por vacaciones, de acuerdo a lo que establece el ministerio de trabajo (ej. las vacaciones son para empleados con más de un año de experiencia, del 2do al 3er año se tienen 15 días de vacaciones, etc.)
+
+La solicitud pasará pos los siguientes estados:
+
+  * *SOLICITADO*: Cuando el usuario envía su solicitud al BOT y el BOT no la rechaza.
+  * *NO VÁLIDO*: Cuando el usuario envía su solicitud al BOT y no cumple con los requisitos del ministerio de trabajo o el empleado solicita mas días de los que puede.
+  * *APROBADO*: Solicitud aprobada por RRHH
+  * *RECHAZADO*: Solicitud rechazada por RRHH
+  * *CANCELADA*: El usuario canceló una solicitud APROBADA
+
+El diagrama de estados para la `SOLICITUD` será:
+
+[plantuml, format="png", id="estados-solicitud"]
+....
+@startuml
+
+[*] --> SOLICITADO
+SOLICITADO --> NO_VALIDO
+NO_VALIDO --> [*]
+SOLICITADO -> APROBADO
+SOLICITADO -> RECHAZADO
+RECHAZADO --> [*]
+APROBADO -> CANCELADO
+APROBADO --> [*]
+CANCELADO --> [*]
+
+@enduml
+....

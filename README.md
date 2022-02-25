@@ -1,8 +1,8 @@
 # Proyecto BOT de Ingeniería de Software.
 
-## Intoriducción
+## Introducción
 
-Este documento específica el porqué es necesario tener un BOT para **Control de vacaciones en una empresa**
+Este documento especifica el porqué es necesario tener un BOT para **Control de vacaciones en una empresa**
 
 ## Problemática
 
