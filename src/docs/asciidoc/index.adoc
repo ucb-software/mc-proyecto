@@ -59,3 +59,90 @@ CANCELADO --> [*]
 
 @enduml
 ....
+
+#### Escenarios
+1. Empleado no esta registrado en la aplicación.
+2. Empleado esta registrado en la aplicación con dias de vacación disponibles.
+3. Empleado esta registrado en la aplicación sin días disponibles.
+4. Solicitud de permisos.
+5. Cancelación de vacaciones.
+
+#### Casos de Prueba
+
+*100.1.1 Usuario no registrado en la aplicación* 
+
+Descripción: Un usuario que no esta registrado en el sistema no debería poder ver el menu de opciones para solicitar vacaciones.
+
+Pasos:
+
+ 1. Ingresar al BOT via Telegram y enviar el comando /start
+    - Datos: NINGUNO
+    - Resultado esperado: El BOT retorna un mensaje. "Usted no esta registrado. Para registrarse ejecute el comando /registrar"
+
+### 101 - Registro de usuario en el sistema.
+
+*Autor*: Ernesto Campohermoso
+
+*Fecha*: 03/03/2022
+
+*Prioridad*: MUY ALTA
+
+#### Descripción
+
+Un `Empleado` debe poder solicitar su registro en el sistema por medio del mismo BOT, al momento de solicitar su registro, el empleado deberá enviar la siguiente información:
+
+ * Nombres
+ * Primer apellido
+ * Segundo apellido
+ * Tercer apellido
+ * Fecha de nacimiento 
+ * Selfie.
+ * Número de documento de identidad.
+ * Complemento.
+
+Esta información es guardad en BBDD y se coloca al empleado en un estado `REGISTRO SOLICITADO`. Luego el `ADMINISTRADOR DE RRHH` recibe la notificación con la información del empleado y procede a aprobar (`REGISTRO APROBADO`) o denegar `REGISTRO DENEGADO` la solicitud.
+
+El diagrama de secuencias para la presente história es el siguiente:
+
+[plantuml, format="png", id="estados-solicitud"]
+....
+@startuml
+actor Empleado 
+
+Empleado -> BOT: Solicitar registro en el sistema
+BOT --> Empleado: 
+
+actor RRHH
+BOT -> RRHH: Nueva solicitud de registro
+RRHH --> BOT: Aprobación/Rechazo
+BOT -> Empleado: Notificación del estado de la solicitud
+
+@enduml
+....
+
+#### Escenarios
+1. Solicitud APROBADA.
+2. Solicitud RECHAZADA.
+3. Validación de datos ingresados por el usuario.
+
+#### Casos de Prueba
+
+*101.1.1 Validación de parámetros* 
+Descripción: Al momento de registrarse el empleado, los siguientes campos son obligatorios: Nombres, Primer apellido, Fecha de nacimiento, Selfie, Número de documento de identidad.
+
+En caso de que el `Empleado no ingrese uno de estos valores` no se debe proceder a enviar la solicitud.
+
+Pasos:
+
+ 1. Ingresar al BOT via Telegram y enviar el comando /start
+    - Datos: NINGUNO
+    - Resultado esperado: El BOT retorna un mensaje. "Usted no esta registrado. Para registrarse ejecute el comando /registrar"
+ 2. El `Empleado` envía el comando `/registrar`
+    - Datos: comando `/registrar`
+    - Resultado: El BOT pregunta por el nombre completo
+ 3. El `Empleado` coloca un espacio en blanco
+    - Datos: Coloca `un espacion en blanco`
+    - Resultado: El BOT pide nuevamente el nombre copmleto porque no puede ser espacios en blanco.
+ 4. El `Empleado` coloca carácteres no convencionales como emojis.
+    - Datos: Coloca `Juan Pablo 😀`
+    - Resultado: El BOT le indica que no puede colocar caracteres especiales.
